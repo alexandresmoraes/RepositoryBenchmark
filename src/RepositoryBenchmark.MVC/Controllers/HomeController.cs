@@ -15,21 +15,21 @@ namespace RepositoryBenchmark.MVC.Controllers
 
     public ActionResult NHibernate()
     {
-      ViewBag.Message = "Your application description page.";
+      ViewBag.Message = "NHibernate Benchmark.";
 
       return View();
     }
 
     public ActionResult EntityFramework()
     {
-      ViewBag.Message = "Your contact page.";
+      ViewBag.Message = "Entity Framework Benchmark.";
 
       return View();
     }
 
     public ActionResult StoredProcedures()
     {
-      ViewBag.Message = "Your contact page.";
+      ViewBag.Message = "Store Procedured Dapper Benchmark.";
 
       return View();
     }
