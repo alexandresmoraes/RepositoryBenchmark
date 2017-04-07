@@ -1,28 +1,51 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
+using NHibernate.Cfg;
+using NHibernate.Tool.hbm2ddl;
 using RepositoryBenchmark.Infra.Data.NHibernate.Mapping;
 using System;
+using System.IO;
 
 namespace RepositoryBenchmark.Infra.Data.NHibernate.Connection
 {
-  public class SessionFactoryProvider
+  public static class SessionFactoryProvider
   {
-    private static readonly IPersistenceConfigurer SqlServer2008Configuration =
-        MsSqlConfiguration.MsSql2012.ConnectionString(
-            c => c.FromConnectionStringWithKey("ConnectionString"));
-    public ISessionFactory CreateInstance()
+    private static void TreatConfiguration(Configuration configuration)
+    {
+      var update = new SchemaUpdate(configuration);
+      update.Execute(Log, true);
+    }
+
+    private static void Log(string sql)
+    {
+      using (var file = new FileStream(@"update.sql", FileMode.Append))
+      {
+        using (var sw = new StreamWriter(file))
+        {
+          sw.Write(sql);
+        }
+      }
+    }
+
+    public static ISessionFactory CreateInstance()
     {
       try
-      {        
-        var config = Fluently.Configure().Database(SqlServer2008Configuration)
-            .Mappings(m => m.FluentMappings.AddFromAssemblyOf<TabelaPrimariaMap>())
-            .Mappings(m => m.FluentMappings.AddFromAssemblyOf<TabelaSecundariaMap>());
-        return config.BuildConfiguration().BuildSessionFactory();
+      {
+        var connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+
+        return Fluently
+          .Configure()
+          .Database(PostgreSQLConfiguration.PostgreSQL82.ConnectionString(connectionString))
+          .Mappings(m => m.FluentMappings.Add<TabelaPrimariaMap>())
+          .Mappings(m => m.FluentMappings.Add<TabelaSecundariaMap>())
+          .ExposeConfiguration(TreatConfiguration)
+          //.BuildConfiguration()
+          .BuildSessionFactory();
       }
       catch (Exception ex)
       {
-        throw new Exception("Failed/Denied of Access/Database does not exist: " + ex.Message, ex);
+        throw new Exception("Falhou a conexão: " + ex.Message, ex);
       }
     }
   }

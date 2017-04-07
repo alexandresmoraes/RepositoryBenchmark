@@ -30,15 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DTO\ResultCreateDTO.cs" />
     <Compile Include="Entities\TabelaPrimaria.cs" />
     <Compile Include="Entities\TabelaSecundaria.cs" />
     <Compile Include="IRepositories\IRepository.cs" />
+    <Compile Include="IServices\IServiceNHibernate.cs" />
     <Compile Include="IUnitOfWork\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="IServices\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Diagrams\DiagramaGeral.cd" />
   </ItemGroup>

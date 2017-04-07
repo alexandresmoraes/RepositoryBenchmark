@@ -40,6 +40,7 @@
       <HintPath>..\..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -50,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connection\SessionFactoryProvider.cs" />
+    <Compile Include="Connection\UnitOfWork.cs" />
     <Compile Include="Mapping\TabelaPrimariaMap.cs" />
     <Compile Include="Mapping\TabelaSecundariaMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

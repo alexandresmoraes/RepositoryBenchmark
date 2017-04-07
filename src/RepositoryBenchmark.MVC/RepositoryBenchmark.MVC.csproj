@@ -142,6 +142,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NHibernateController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -185,6 +186,7 @@
     <Content Include="Views\Home\NHibernate.cshtml" />
     <Content Include="Views\Home\EntityFramework.cshtml" />
     <Content Include="Views\Home\StoredProcedures.cshtml" />
+    <Content Include="Views\NHibernate\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
