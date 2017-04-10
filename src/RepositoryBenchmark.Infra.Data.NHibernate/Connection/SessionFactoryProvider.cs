@@ -14,12 +14,12 @@ namespace RepositoryBenchmark.Infra.Data.NHibernate.Connection
     private static void TreatConfiguration(Configuration configuration)
     {
       var update = new SchemaUpdate(configuration);
-      update.Execute(Log, true);
+      update.Execute(LogSql, true);
     }
 
-    private static void Log(string sql)
+    private static void LogSql(string sql)
     {
-      using (var file = new FileStream(@"update.sql", FileMode.Append))
+      using (var file = new FileStream(@"D:\update.sql", FileMode.Append))
       {
         using (var sw = new StreamWriter(file))
         {
@@ -40,7 +40,7 @@ namespace RepositoryBenchmark.Infra.Data.NHibernate.Connection
           .Mappings(m => m.FluentMappings.Add<TabelaPrimariaMap>())
           .Mappings(m => m.FluentMappings.Add<TabelaSecundariaMap>())
           .ExposeConfiguration(TreatConfiguration)
-          //.BuildConfiguration()
+          .BuildConfiguration()
           .BuildSessionFactory();
       }
       catch (Exception ex)

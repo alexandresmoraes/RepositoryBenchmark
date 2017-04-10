@@ -1,22 +1,14 @@
-﻿using RepositoryBenchmark.Domain.DTO;
-using RepositoryBenchmark.Domain.Entities;
-using RepositoryBenchmark.Domain.IRepositories;
-using RepositoryBenchmark.Domain.IServices;
-
+﻿
 namespace RepositoryBenchmark.App.Services.Services
 {
-  public class ServiceNHibernate : IServiceNHibernate
+  public class ServiceNHibernate : Service
   {
-    private readonly IRepository<TabelaPrimaria> _repositoryPrimario;
-
-    public ServiceNHibernate(IRepository<TabelaPrimaria> repositoryPrimario)
+    public ServiceNHibernate(
+      Infra.Data.NHibernate.Repositories.RepositoryTabelaPrimaria repositoryPrimario,
+      Infra.Data.NHibernate.Repositories.RepositoryTabelaSecundaria repositorySecundario,
+      Infra.Data.NHibernate.Connection.UnitOfWork unitOfWork)
+      : base(repositoryPrimario, repositorySecundario, unitOfWork)
     {
-      _repositoryPrimario = repositoryPrimario;
-    }
-
-    public ResultCreateDTO ExecuteCreateTest()
-    {
-      return null;
     }
   }
 }

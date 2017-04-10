@@ -41,12 +41,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\FactoryProvider.cs" />
+    <Compile Include="Services\Service.cs" />
     <Compile Include="Services\ServiceNHibernate.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RepositoryBenchmark.Domain\RepositoryBenchmark.Domain.csproj">
       <Project>{0AFB33C5-DEA6-4C6B-A44D-2A79A57D10F9}</Project>
       <Name>RepositoryBenchmark.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RepositoryBenchmark.Infra.Data.NHibernate\RepositoryBenchmark.Infra.Data.NHibernate.csproj">
+      <Project>{E72AF7FB-2922-4C8D-8060-82C8ACBCB36D}</Project>
+      <Name>RepositoryBenchmark.Infra.Data.NHibernate</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,7 +7,9 @@ namespace RepositoryBenchmark.Infra.Data.NHibernate.Mapping
   {
     public TabelaSecundariaMap()
     {
-      Table("tabela-secundaria");
+      Table("tabelasecundaria");
+
+      Id(t => t.Id);
 
       Map(t => t.Number)
         .Not.Nullable();
@@ -30,9 +32,6 @@ namespace RepositoryBenchmark.Infra.Data.NHibernate.Mapping
        .Not.Nullable();
 
       Map(t => t.Data)
-        .Not.Nullable();
-
-      References(t => t.TabelaPrimaria)
         .Not.Nullable();
     }
   }

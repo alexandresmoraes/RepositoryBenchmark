@@ -1,4 +1,6 @@
-﻿using SimpleInjector;
+﻿using NHibernate;
+using RepositoryBenchmark.App.Services.Services;
+using SimpleInjector;
 
 namespace RepositoryBenchmark.Infra.CrossCutting.IoC
 {
@@ -6,14 +8,12 @@ namespace RepositoryBenchmark.Infra.CrossCutting.IoC
   {
     public static void RegisterServices(Container container)
     {
-      //container.RegisterPerWebRequest<ApplicationDbContext>();
-      //container.RegisterPerWebRequest<IUserStore<ApplicationUser>>(() => new UserStore<ApplicationUser>(new ApplicationDbContext()));
-      //container.RegisterPerWebRequest<IRoleStore<IdentityRole, string>>(() => new RoleStore<IdentityRole>());
-      //container.RegisterPerWebRequest<ApplicationRoleManager>();
-      //container.RegisterPerWebRequest<ApplicationUserManager>();
-      //container.RegisterPerWebRequest<ApplicationSignInManager>();
-
-      //container.RegisterPerWebRequest<IUsuarioRepository, UsuarioRepository>();
+      container.Register<ISessionFactory>(Data.NHibernate.Connection.SessionFactoryProvider.CreateInstance, Lifestyle.Singleton);
+      container.Register<ISession>(() => container.GetInstance<ISessionFactory>().OpenSession(), Lifestyle.Scoped);
+      container.Register<Data.NHibernate.Repositories.RepositoryTabelaPrimaria>(Lifestyle.Scoped);
+      container.Register<Data.NHibernate.Repositories.RepositoryTabelaSecundaria>(Lifestyle.Scoped);
+      container.Register<Data.NHibernate.Connection.UnitOfWork>(Lifestyle.Scoped);
+      container.Register<ServiceNHibernate>(Lifestyle.Scoped);
     }
   }
 }

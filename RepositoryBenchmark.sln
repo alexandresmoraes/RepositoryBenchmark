@@ -1,9 +1,14 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.10
+VisualStudioVersion = 15.0.26228.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryBenchmark.MVC", "src\RepositoryBenchmark.MVC\RepositoryBenchmark.MVC.csproj", "{357A8DD0-4AF3-4FEB-B692-40F6479FF194}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B02FC49D-7533-4D4B-A818-C57438569752} = {B02FC49D-7533-4D4B-A818-C57438569752}
+		{0AFB33C5-DEA6-4C6B-A44D-2A79A57D10F9} = {0AFB33C5-DEA6-4C6B-A44D-2A79A57D10F9}
+		{B23918F3-550E-4C3C-B091-EFB09E5BFB29} = {B23918F3-550E-4C3C-B091-EFB09E5BFB29}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryBenchmark.Infra.Data.NHibernate", "src\RepositoryBenchmark.Infra.Data.NHibernate\RepositoryBenchmark.Infra.Data.NHibernate.csproj", "{E72AF7FB-2922-4C8D-8060-82C8ACBCB36D}"
 	ProjectSection(ProjectDependencies) = postProject

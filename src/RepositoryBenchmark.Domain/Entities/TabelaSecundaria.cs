@@ -12,6 +12,5 @@ namespace RepositoryBenchmark.Domain.Entities
     public virtual bool Booleano { get; set; }
     public virtual byte[] Binario { get; set; }
     public virtual DateTime Data { get; set; }
-    public virtual TabelaPrimaria TabelaPrimaria { get; set; }
   }
 }

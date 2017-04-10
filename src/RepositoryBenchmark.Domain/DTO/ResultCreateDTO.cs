@@ -10,5 +10,7 @@ namespace RepositoryBenchmark.Domain.DTO
     public TimeSpan Tempo250001a500000 { get; set; }
     public TimeSpan TempoTotal { get; set; }
     public TimeSpan Tempo1em500000 { get; set; }
+    public TimeSpan Tempo50em500000 { get; set; }
+    public TimeSpan Tempo100em500000 { get; set; }
   }
 }

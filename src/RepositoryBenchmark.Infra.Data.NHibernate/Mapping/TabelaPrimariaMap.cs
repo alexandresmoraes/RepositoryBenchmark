@@ -7,7 +7,9 @@ namespace RepositoryBenchmark.Infra.Data.NHibernate.Mapping
   {
     public TabelaPrimariaMap()
     {
-      Table("tabela-primaria");
+      Table("tabelaprimaria");
+
+      Id(t => t.Id);
 
       Map(t => t.Number)
         .Not.Nullable();
@@ -18,7 +20,7 @@ namespace RepositoryBenchmark.Infra.Data.NHibernate.Mapping
 
       Map(t => t.StringLarge)
         .Not.Nullable()
-        .Length(50);
+        .Length(255);
 
       Map(t => t.Decimal)
         .Not.Nullable();
@@ -33,8 +35,8 @@ namespace RepositoryBenchmark.Infra.Data.NHibernate.Mapping
         .Not.Nullable();
 
       References(t => t.TabelaSecundaria)
-        .Column("tabela-secundaria_id")
-        .Not.Nullable();
+        .Column("tabelasecundaria_id")
+        .Nullable();
     }
   }
 }

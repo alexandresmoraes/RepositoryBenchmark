@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using RepositoryBenchmark.Domain.Entities;
 using RepositoryBenchmark.Domain.IRepositories;
 
@@ -12,7 +13,7 @@ namespace RepositoryBenchmark.Infra.Data.EntityFramework.Repositories
       throw new NotImplementedException();
     }
 
-    public bool Delete(TabelaPrimaria entity)
+    public void Delete(TabelaPrimaria entity)
     {
       throw new NotImplementedException();
     }
@@ -22,7 +23,7 @@ namespace RepositoryBenchmark.Infra.Data.EntityFramework.Repositories
       throw new NotImplementedException();
     }
 
-    public IEnumerable<TabelaPrimaria> Read(int maximoLinhas, int linhaInicial)
+    public IEnumerable<TabelaPrimaria> Read(int maximoLinhas, int linhaInicial, params Expression<Func<TabelaPrimaria, object>>[] orderBys)
     {
       throw new NotImplementedException();
     }

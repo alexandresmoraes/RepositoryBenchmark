@@ -2,8 +2,8 @@
 
 namespace RepositoryBenchmark.Domain.IServices
 {
-  public interface IServiceNHibernate
+  public interface IService
   {
-    ResultCreateDTO ExecuteCreateTest();
+    void ExecuteCreateTest(ResultCreateDTO r);
   }
 }
