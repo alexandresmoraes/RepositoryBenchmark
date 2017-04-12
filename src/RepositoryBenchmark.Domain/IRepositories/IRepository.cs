@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace RepositoryBenchmark.Domain.IRepositories
 {
-  public interface IRepository<T>
+  public interface IRepository<T> : IDisposable
   {
     T Create(T entity);
     IEnumerable<T> Read(int maximoLinhas, int linhaInicial, params Expression<Func<T, object>>[] orderBys);

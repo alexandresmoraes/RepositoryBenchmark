@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 namespace RepositoryBenchmark.App.Services.Services
 {
-  public abstract class Service : IService
+  public abstract class Service : IService, IDisposable
   {
     private readonly IRepository<TabelaPrimaria> _repositoryPrimario;
     private readonly IRepository<TabelaSecundaria> _repositorySecundario;
@@ -30,10 +30,6 @@ namespace RepositoryBenchmark.App.Services.Services
     {
       var sw = new Stopwatch();
       var swTotal = new Stopwatch();
-      var bag = new List<TabelaPrimaria>();
-
-      for (int i = 0; i < 500151; i++)
-        bag.Add(FactoryProvider.GetInstaceTabelaPrimaria());
 
       swTotal.Start();
 
@@ -44,7 +40,10 @@ namespace RepositoryBenchmark.App.Services.Services
         _unitOfWork.BeginTransaction();
 
         for (int i = 0; i < 1000; i++)
-          _repositoryPrimario.Create(bag[i]);
+        {
+          using (var entity = FactoryProvider.GetInstaceTabelaPrimaria())
+            _repositoryPrimario.Create(entity);
+        }
 
         _unitOfWork.Commit();
         sw.Stop();
@@ -65,7 +64,10 @@ namespace RepositoryBenchmark.App.Services.Services
         _unitOfWork.BeginTransaction();
 
         for (int i = 1000; i < 50000; i++)
-          _repositoryPrimario.Create(bag[i]);
+        {
+          using (var entity = FactoryProvider.GetInstaceTabelaPrimaria())
+            _repositoryPrimario.Create(entity);
+        }
 
         _unitOfWork.Commit();
         sw.Stop();
@@ -86,7 +88,10 @@ namespace RepositoryBenchmark.App.Services.Services
         _unitOfWork.BeginTransaction();
 
         for (int i = 50000; i < 250000; i++)
-          _repositoryPrimario.Create(bag[i]);
+        {
+          using (var entity = FactoryProvider.GetInstaceTabelaPrimaria())
+            _repositoryPrimario.Create(entity);
+        }
 
         _unitOfWork.Commit();
         sw.Stop();
@@ -107,7 +112,10 @@ namespace RepositoryBenchmark.App.Services.Services
         _unitOfWork.BeginTransaction();
 
         for (int i = 250000; i < 500000; i++)
-          _repositoryPrimario.Create(bag[i]);
+        {
+          using (var entity = FactoryProvider.GetInstaceTabelaPrimaria())
+            _repositoryPrimario.Create(entity);
+        }
 
         _unitOfWork.Commit();
         sw.Stop();
@@ -130,7 +138,7 @@ namespace RepositoryBenchmark.App.Services.Services
         sw.Start();
         _unitOfWork.BeginTransaction();
 
-        _repositoryPrimario.Create(bag[500000]);
+        _repositoryPrimario.Create(FactoryProvider.GetInstaceTabelaPrimaria());
 
         _unitOfWork.Commit();
         sw.Stop();
@@ -151,7 +159,10 @@ namespace RepositoryBenchmark.App.Services.Services
         _unitOfWork.BeginTransaction();
 
         for (int i = 500001; i < 500051; i++)
-          _repositoryPrimario.Create(bag[i]);
+        {
+          using (var entity = FactoryProvider.GetInstaceTabelaPrimaria())
+            _repositoryPrimario.Create(entity);
+        }
 
         _unitOfWork.Commit();
         sw.Stop();
@@ -172,7 +183,10 @@ namespace RepositoryBenchmark.App.Services.Services
         _unitOfWork.BeginTransaction();
 
         for (int i = 500051; i < 500151; i++)
-          _repositoryPrimario.Create(bag[i]);
+        {
+          using (var entity = FactoryProvider.GetInstaceTabelaPrimaria())
+            _repositoryPrimario.Create(entity);
+        }
 
         _unitOfWork.Commit();
         sw.Stop();
@@ -185,6 +199,26 @@ namespace RepositoryBenchmark.App.Services.Services
       resultCreateDTO.Tempo100em500000 = sw.Elapsed;
       sw.Reset();
       #endregion 100em500000
+    }
+
+    private bool disposed = false;
+    protected virtual void Dispose(bool disposing)
+    {
+      if (!this.disposed)
+      {
+        if (disposing)
+        {
+          _repositoryPrimario.Dispose();
+          _repositorySecundario.Dispose();
+          _unitOfWork.Dispose();
+        }
+      }
+      this.disposed = true;
+    }
+    public void Dispose()
+    {
+      Dispose(true);
+      GC.SuppressFinalize(this);
     }
   }
 }

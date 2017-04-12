@@ -6,26 +6,34 @@ namespace RepositoryBenchmark.Infra.Data.NHibernate.Connection
 {
   public class UnitOfWork : IUnitOfWork, IDisposable
   {
-    private readonly ISession _session;
+    private readonly ISessionFactory _sessionFactory;
+    private ISession _session;
     private ITransaction _transaction;
 
-    public UnitOfWork(ISession session)
+    public UnitOfWork(ISessionFactory sessionFactory)
     {
-      _session = session;
+      _sessionFactory = sessionFactory;
     }
     public void BeginTransaction()
     {
+      _session = _sessionFactory.OpenSession();
       _transaction = _session.BeginTransaction();
     }
     public void Commit()
     {
       if (_transaction != null && _transaction.IsActive)
+      {
         _transaction.Commit();
+        _session.Dispose();
+      }
     }
     public void Rollback()
     {
       if (_transaction != null && _transaction.IsActive)
+      {
         _transaction.Rollback();
+        _session.Dispose();
+      }
     }
 
     private bool disposed = false;
@@ -35,7 +43,8 @@ namespace RepositoryBenchmark.Infra.Data.NHibernate.Connection
       {
         if (disposing)
         {
-          _session.Dispose();
+          if (_session != null)
+            _session.Dispose();
         }
       }
       this.disposed = true;
