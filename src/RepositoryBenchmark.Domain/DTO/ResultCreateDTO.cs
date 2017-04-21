@@ -1,16 +1,13 @@
 ﻿using System;
 
-namespace RepositoryBenchmark.Domain.DTO
+namespace RepositoryBenchmark.Domain.Dto
 {
-  public class ResultCreateDTO
+  public class ResultCreateDto
   {
-    public TimeSpan Tempo1a1000 { get; set; }
-    public TimeSpan Tempo1001a50000 { get; set; }
-    public TimeSpan Tempo50001a250000 { get; set; }
-    public TimeSpan Tempo250001a500000 { get; set; }
-    public TimeSpan TempoTotal { get; set; }
-    public TimeSpan Tempo1em500000 { get; set; }
-    public TimeSpan Tempo50em500000 { get; set; }
-    public TimeSpan Tempo100em500000 { get; set; }
+    public TimeSpan _01_0010_X50 { get; set; }
+    public TimeSpan _02_0050_X50 { get; set; }
+    public TimeSpan _03_0100_X50 { get; set; }
+    public TimeSpan _04_0500_X50 { get; set; }
+    public TimeSpan _05_1000_X50 { get; set; }
   }
 }

@@ -1,5 +1,5 @@
 ﻿using RepositoryBenchmark.App.Services.Providers;
-using RepositoryBenchmark.Domain.DTO;
+using RepositoryBenchmark.Domain.Dto;
 using RepositoryBenchmark.Domain.Entities;
 using RepositoryBenchmark.Domain.IRepositories;
 using RepositoryBenchmark.Domain.IServices;
@@ -7,6 +7,7 @@ using RepositoryBenchmark.Domain.IUnitOfWork;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 
 namespace RepositoryBenchmark.App.Services.Services
 {
@@ -26,179 +27,154 @@ namespace RepositoryBenchmark.App.Services.Services
       _unitOfWork = unitOfWork;
     }
 
-    public void ExecuteCreateTest(ResultCreateDTO resultCreateDTO)
+    public void ExecuteCreateTest(ResultCreateDto resultCreateDTO)
     {
       var sw = new Stopwatch();
-      var swTotal = new Stopwatch();
 
-      swTotal.Start();
-
-      #region 1a1000
+      #region 0010
+      List<TabelaPrimaria> list = FactoryProvider
+        .GetListTabelaPrimaria(10*50)
+        .ToList();
       try
       {
         sw.Start();
         _unitOfWork.BeginTransaction();
 
-        for (int i = 0; i < 1000; i++)
-        {
-          using (var entity = FactoryProvider.GetInstaceTabelaPrimaria())
-            _repositoryPrimario.Create(entity);
-        }
+        foreach (var item in list)
+          _repositoryPrimario.Create(item);
 
         _unitOfWork.Commit();
         sw.Stop();
       }
-      catch (Exception e)
+      catch (Exception)
       {
         _unitOfWork.Rollback();
         sw.Stop();
       }
-      resultCreateDTO.Tempo1a1000 = sw.Elapsed;
-      sw.Reset();
-      #endregion 1a1000
+      finally
+      {
+        list.ForEach(i => i.Dispose());
+        list = null;
+      }
 
-      #region 1001a50000
+      resultCreateDTO._01_0010_X50 = sw.Elapsed;
+      sw.Reset();
+      #endregion 0010
+
+      #region 0050
+      list = FactoryProvider
+        .GetListTabelaPrimaria(50 * 50)
+        .ToList();
+
       try
       {
         sw.Start();
         _unitOfWork.BeginTransaction();
 
-        for (int i = 1000; i < 50000; i++)
-        {
-          using (var entity = FactoryProvider.GetInstaceTabelaPrimaria())
-            _repositoryPrimario.Create(entity);
-        }
+        foreach (var item in list)
+          _repositoryPrimario.Create(item);
 
         _unitOfWork.Commit();
         sw.Stop();
       }
-      catch
+      catch (Exception)
       {
         _unitOfWork.Rollback();
         sw.Stop();
       }
-      resultCreateDTO.Tempo1001a50000 = sw.Elapsed;
-      sw.Reset();
-      #endregion 1001a50000
+      finally
+      {
+        list.ForEach(i => i.Dispose());
+        list = null;
+      }
 
-      #region 50001a250000
+      resultCreateDTO._02_0050_X50 = sw.Elapsed;
+      sw.Reset();
+      #endregion 0050
+
+      #region 0100
+      list = FactoryProvider.GetListTabelaPrimaria(100 * 50).ToList();
       try
       {
         sw.Start();
         _unitOfWork.BeginTransaction();
 
-        for (int i = 50000; i < 250000; i++)
-        {
-          using (var entity = FactoryProvider.GetInstaceTabelaPrimaria())
-            _repositoryPrimario.Create(entity);
-        }
+        foreach (var item in list)
+          _repositoryPrimario.Create(item);
 
         _unitOfWork.Commit();
         sw.Stop();
       }
-      catch
+      catch (Exception)
       {
         _unitOfWork.Rollback();
         sw.Stop();
       }
-      resultCreateDTO.Tempo50001a250000 = sw.Elapsed;
-      sw.Reset();
-      #endregion 50001a250000
+      finally
+      {
+        list.ForEach(i => i.Dispose());
+        list = null;
+      }
 
-      #region 250001a500000
+      resultCreateDTO._03_0100_X50 = sw.Elapsed;
+      sw.Reset();
+      #endregion 0100
+
+      #region 0500
+      list = FactoryProvider.GetListTabelaPrimaria(500 * 50).ToList();
       try
       {
         sw.Start();
         _unitOfWork.BeginTransaction();
 
-        for (int i = 250000; i < 500000; i++)
-        {
-          using (var entity = FactoryProvider.GetInstaceTabelaPrimaria())
-            _repositoryPrimario.Create(entity);
-        }
+        foreach (var item in list)
+          _repositoryPrimario.Create(item);
 
         _unitOfWork.Commit();
         sw.Stop();
       }
-      catch
+      catch (Exception)
       {
         _unitOfWork.Rollback();
         sw.Stop();
       }
-      resultCreateDTO.Tempo250001a500000 = sw.Elapsed;
+      finally
+      {
+        list.ForEach(i => i.Dispose());
+        list = null;
+      }
+
+      resultCreateDTO._04_0500_X50 = sw.Elapsed;
       sw.Reset();
-      #endregion 250001a500000
+      #endregion 0500
 
-      swTotal.Stop();
-      resultCreateDTO.TempoTotal = swTotal.Elapsed;
-
-      #region 1em500000
+      #region 1000
+      list = FactoryProvider.GetListTabelaPrimaria(1000 * 50).ToList();
       try
       {
         sw.Start();
         _unitOfWork.BeginTransaction();
 
-        _repositoryPrimario.Create(FactoryProvider.GetInstaceTabelaPrimaria());
+        foreach (var item in list)
+          _repositoryPrimario.Create(item);
 
         _unitOfWork.Commit();
         sw.Stop();
       }
-      catch
+      catch (Exception)
       {
         _unitOfWork.Rollback();
         sw.Stop();
       }
-      resultCreateDTO.Tempo1em500000 = sw.Elapsed;
+      finally
+      {
+        list.ForEach(i => i.Dispose());
+        list = null;
+      }
+
+      resultCreateDTO._05_1000_X50 = sw.Elapsed;
       sw.Reset();
-      #endregion 1em500000
-
-      #region 50em500000
-      try
-      {
-        sw.Start();
-        _unitOfWork.BeginTransaction();
-
-        for (int i = 500001; i < 500051; i++)
-        {
-          using (var entity = FactoryProvider.GetInstaceTabelaPrimaria())
-            _repositoryPrimario.Create(entity);
-        }
-
-        _unitOfWork.Commit();
-        sw.Stop();
-      }
-      catch
-      {
-        _unitOfWork.Rollback();
-        sw.Stop();
-      }
-      resultCreateDTO.Tempo50em500000 = sw.Elapsed;
-      sw.Reset();
-      #endregion 50em500000
-
-      #region 100em500000
-      try
-      {
-        sw.Start();
-        _unitOfWork.BeginTransaction();
-
-        for (int i = 500051; i < 500151; i++)
-        {
-          using (var entity = FactoryProvider.GetInstaceTabelaPrimaria())
-            _repositoryPrimario.Create(entity);
-        }
-
-        _unitOfWork.Commit();
-        sw.Stop();
-      }
-      catch
-      {
-        _unitOfWork.Rollback();
-        sw.Stop();
-      }
-      resultCreateDTO.Tempo100em500000 = sw.Elapsed;
-      sw.Reset();
-      #endregion 100em500000
+      #endregion 1000
     }
 
     private bool disposed = false;

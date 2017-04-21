@@ -30,11 +30,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DTO\ResultCreateDTO.cs" />
+    <Compile Include="Dto\ResultCreateDto.cs" />
     <Compile Include="Entities\TabelaPrimaria.cs" />
     <Compile Include="Entities\TabelaSecundaria.cs" />
     <Compile Include="IRepositories\IRepository.cs" />
-    <Compile Include="IServices\IServiceNHibernate.cs" />
+    <Compile Include="IServices\IService.cs" />
     <Compile Include="IUnitOfWork\IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

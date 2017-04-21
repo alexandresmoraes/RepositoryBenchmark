@@ -1,6 +1,16 @@
-﻿
+﻿@model RepositoryBenchmark.Domain.Dto.ResultCreateDto
+
 @{
-    ViewBag.Title = "Index";
+  ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>  Média 10 inserções: @Model._01_0010_X50.ToString()  </h2>
+<br />
+<h2>  Média 50 inserções: @Model._02_0050_X50.ToString()  </h2>
+<br />
+<h2>  Média 100 inserções: @Model._03_0100_X50.ToString()  </h2>
+<br />
+<h2>  Média 500 inserções: @Model._04_0500_X50.ToString()  </h2>
+<br />
+<h2>  Média 1000 inserções: @Model._05_1000_X50.ToString()  </h2>
+<br />

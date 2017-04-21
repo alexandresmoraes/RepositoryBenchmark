@@ -1,5 +1,5 @@
 ﻿using RepositoryBenchmark.App.Services.Services;
-using RepositoryBenchmark.Domain.DTO;
+using RepositoryBenchmark.Domain.Dto;
 using System.Web.Mvc;
 
 namespace RepositoryBenchmark.MVC.Controllers
@@ -17,10 +17,11 @@ namespace RepositoryBenchmark.MVC.Controllers
     public ActionResult Index()
     {
 
-      var result = new ResultCreateDTO();
-      _serviceNHibernate.ExecuteCreateTest(result);
+      var model = new ResultCreateDto();
 
-      return View();
+      _serviceNHibernate.ExecuteCreateTest(model);
+
+      return View(model);
     }
   }
 }

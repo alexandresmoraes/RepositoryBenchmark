@@ -1,5 +1,6 @@
 ﻿using RepositoryBenchmark.Domain.Entities;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace RepositoryBenchmark.App.Services.Providers
@@ -48,6 +49,13 @@ namespace RepositoryBenchmark.App.Services.Providers
         Binario = RandomByteArray(1024),
         Data = DateTime.Now
       };
+    }
+    public static IEnumerable<TabelaPrimaria> GetListTabelaPrimaria(int length)
+    {
+      for (int i = 0; i < length; i++)
+      {
+        yield return GetInstaceTabelaPrimaria();
+      }
     }
   }
 }

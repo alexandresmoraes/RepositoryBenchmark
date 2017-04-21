@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.12
+VisualStudioVersion = 15.0.26403.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryBenchmark.MVC", "src\RepositoryBenchmark.MVC\RepositoryBenchmark.MVC.csproj", "{357A8DD0-4AF3-4FEB-B692-40F6479FF194}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -27,13 +27,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryBenchmark.Infra.D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Presentation", "1 - Presentation", "{80E8685E-5F83-441E-8885-0EDED7110870}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domain", "2 - Domain", "{06BA8593-47C6-4BA2-A517-143207893A94}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{06BA8593-47C6-4BA2-A517-143207893A94}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infra", "4 - Infra", "{11FA6139-0468-4CE6-BCCA-0F4C42811755}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryBenchmark.Domain", "src\RepositoryBenchmark.Domain\RepositoryBenchmark.Domain.csproj", "{0AFB33C5-DEA6-4C6B-A44D-2A79A57D10F9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Aplication", "3 - Aplication", "{F8009E90-23B2-4A8C-BF8B-5795C3D5159F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Aplication", "2 - Aplication", "{F8009E90-23B2-4A8C-BF8B-5795C3D5159F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RepositoryBenchmark.App.Services", "src\RepositoryBenchmark.App.Services\RepositoryBenchmark.App.Services.csproj", "{B23918F3-550E-4C3C-B091-EFB09E5BFB29}"
 EndProject

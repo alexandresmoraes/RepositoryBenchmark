@@ -12,10 +12,19 @@ namespace RepositoryBenchmark.Domain.Entities
     public virtual bool Booleano { get; set; }
     public virtual byte[] Binario { get; set; }
     public virtual DateTime Data { get; set; }
+    public virtual TabelaPrimaria TabelaPrimaria { get; set; }
 
     private bool disposed = false;
     protected void Dispose(bool disposing)
     {
+      if (!this.disposed)
+      {
+        if (disposing)
+        {
+          if (TabelaPrimaria != null)
+            TabelaPrimaria.Dispose();
+        }
+      }
       this.disposed = true;
     }
     public void Dispose()
