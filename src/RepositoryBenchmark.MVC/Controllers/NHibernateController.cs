@@ -1,5 +1,5 @@
 ﻿using RepositoryBenchmark.App.Services.Services;
-using RepositoryBenchmark.Domain.Dto;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 
 namespace RepositoryBenchmark.MVC.Controllers
@@ -14,12 +14,9 @@ namespace RepositoryBenchmark.MVC.Controllers
     }
 
     // GET: NHibernate
-    public ActionResult Index()
+    public async Task<ActionResult> Index()
     {
-
-      var model = new ResultCreateDto();
-
-      _serviceNHibernate.ExecuteCreateTest(model);
+      var model = await _serviceNHibernate.ExecuteCreateTest();
 
       return View(model);
     }

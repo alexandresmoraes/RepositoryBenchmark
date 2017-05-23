@@ -1,9 +1,10 @@
 ﻿using RepositoryBenchmark.Domain.Dto;
+using System.Threading.Tasks;
 
 namespace RepositoryBenchmark.Domain.IServices
 {
   public interface IService
   {
-    void ExecuteCreateTest(ResultCreateDto r);
+    Task<ResultCreateDto> ExecuteCreateTest();
   }
 }

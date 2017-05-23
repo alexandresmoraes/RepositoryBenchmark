@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace RepositoryBenchmark.App.Services.Services
 {
@@ -27,9 +28,10 @@ namespace RepositoryBenchmark.App.Services.Services
       _unitOfWork = unitOfWork;
     }
 
-    public void ExecuteCreateTest(ResultCreateDto resultCreateDTO)
+    public Task<ResultCreateDto> ExecuteCreateTest()
     {
       var sw = new Stopwatch();
+      var resultCreateDTO = new ResultCreateDto();
 
       #region 0010
       List<TabelaPrimaria> list = FactoryProvider
@@ -175,6 +177,8 @@ namespace RepositoryBenchmark.App.Services.Services
       resultCreateDTO._05_1000_X50 = sw.Elapsed;
       sw.Reset();
       #endregion 1000
+
+      return Task.FromResult(resultCreateDTO);
     }
 
     private bool disposed = false;
